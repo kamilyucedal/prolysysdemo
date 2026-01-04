@@ -398,10 +398,10 @@ const CSPPyrolysisSimulation = () => {
       
       {/* Header with controls */}
       <div style={{ position: 'relative', zIndex: 1, marginBottom: '2rem' }}>
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '1rem' }}>
-          <div>
+        <div style={{ marginBottom: '1rem' }}>
+          <div style={{ textAlign: 'center', marginBottom: '1.5rem' }}>
             <h1 style={{
-              fontSize: '2.5rem',
+              fontSize: 'clamp(1.5rem, 5vw, 2.5rem)',
               fontWeight: 700,
               margin: 0,
               background: 'linear-gradient(90deg, #ff8800, #ffb347)',
@@ -412,16 +412,20 @@ const CSPPyrolysisSimulation = () => {
             }}>
               CSP Plastic Pyrolysis Plant
             </h1>
-            <p style={{ margin: '0.5rem 0 0 0', color: '#8b95a5', fontSize: '0.95rem' }}>
+            <p style={{ margin: '0.5rem 0 0 0', color: '#8b95a5', fontSize: 'clamp(0.75rem, 2vw, 0.95rem)' }}>
               Concentrated Solar Power & Hydrogen Production - Real-time Simulation
             </p>
           </div>
           
-          {/* Settings panel */}
+          {/* Settings panel - RESPONSIVE */}
           <div style={{
             display: 'flex',
-            gap: '1rem',
-            alignItems: 'flex-start'
+            gap: '0.75rem',
+            alignItems: 'flex-start',
+            flexWrap: 'wrap',
+            justifyContent: 'center',
+            overflowX: 'auto',
+            paddingBottom: '0.5rem'
           }}>
             {/* Speed selector */}
             <div style={{
@@ -429,7 +433,10 @@ const CSPPyrolysisSimulation = () => {
               backdropFilter: 'blur(10px)',
               border: '1px solid rgba(255,255,255,0.1)',
               borderRadius: '12px',
-              padding: '1rem'
+              padding: '0.75rem',
+              minWidth: '160px',
+              maxWidth: '220px',
+              flex: '1 1 auto'
             }}>
               <div style={{ fontSize: '0.8rem', color: '#8b95a5', marginBottom: '0.5rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                 <Zap size={14} />
@@ -444,9 +451,9 @@ const CSPPyrolysisSimulation = () => {
                   borderRadius: '6px',
                   color: '#e0e6ed',
                   padding: '0.5rem',
-                  fontSize: '0.9rem',
+                  fontSize: 'clamp(0.75rem, 2vw, 0.9rem)',
                   cursor: 'pointer',
-                  width: '200px'
+                  width: '100%'
                 }}
               >
                 {Object.keys(SPEED_OPTIONS).map(speed => (
@@ -464,7 +471,10 @@ const CSPPyrolysisSimulation = () => {
               backdropFilter: 'blur(10px)',
               border: '1px solid rgba(255,255,255,0.1)',
               borderRadius: '12px',
-              padding: '1rem'
+              padding: '0.75rem',
+              minWidth: '160px',
+              maxWidth: '220px',
+              flex: '1 1 auto'
             }}>
               <div style={{ fontSize: '0.8rem', color: '#8b95a5', marginBottom: '0.5rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                 <MapPin size={14} />
@@ -479,9 +489,9 @@ const CSPPyrolysisSimulation = () => {
                   borderRadius: '6px',
                   color: '#e0e6ed',
                   padding: '0.5rem',
-                  fontSize: '0.9rem',
+                  fontSize: 'clamp(0.75rem, 2vw, 0.9rem)',
                   cursor: 'pointer',
-                  width: '200px'
+                  width: '100%'
                 }}
               >
                 {Object.keys(SOLAR_DATA).map(loc => (
@@ -499,7 +509,10 @@ const CSPPyrolysisSimulation = () => {
               backdropFilter: 'blur(10px)',
               border: '1px solid rgba(255,255,255,0.1)',
               borderRadius: '12px',
-              padding: '1rem'
+              padding: '0.75rem',
+              minWidth: '160px',
+              maxWidth: '220px',
+              flex: '1 1 auto'
             }}>
               <div style={{ fontSize: '0.8rem', color: '#8b95a5', marginBottom: '0.5rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                 <Settings size={14} />
@@ -514,9 +527,9 @@ const CSPPyrolysisSimulation = () => {
                   borderRadius: '6px',
                   color: '#e0e6ed',
                   padding: '0.5rem',
-                  fontSize: '0.9rem',
+                  fontSize: 'clamp(0.75rem, 2vw, 0.9rem)',
                   cursor: 'pointer',
-                  width: '200px'
+                  width: '100%'
                 }}
               >
                 {Object.keys(PLASTIC_TYPES).map(type => (
@@ -535,18 +548,22 @@ const CSPPyrolysisSimulation = () => {
               background: 'rgba(255,136,0,0.1)',
               border: '2px solid rgba(255,136,0,0.3)',
               borderRadius: '12px',
-              padding: '1rem',
-              minWidth: '180px'
+              padding: '0.75rem',
+              minWidth: '140px',
+              maxWidth: '180px',
+              flex: '1 1 auto'
             }}>
-              <div style={{ fontSize: '0.75rem', color: '#8b95a5', marginBottom: '0.25rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                <Calendar size={14} />
-                {currentDate.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
+              <div style={{ fontSize: '0.7rem', color: '#8b95a5', marginBottom: '0.25rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                <Calendar size={12} />
+                <span style={{ whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+                  {currentDate.toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}
+                </span>
               </div>
-              <div style={{ fontSize: '2rem', fontWeight: 700, color: '#ff8800' }}>
+              <div style={{ fontSize: 'clamp(1.5rem, 4vw, 2rem)', fontWeight: 700, color: '#ff8800' }}>
                 {String(currentHour || 0).padStart(2, '0')}:{String(Math.floor(currentMinute || 0)).padStart(2, '0')}
               </div>
-              <div style={{ fontSize: '0.7rem', color: '#8b95a5', marginTop: '0.25rem' }}>
-                {isDaytime ? `☀️ Day (${(sunrise || 6).toFixed(1)}-${(sunset || 18).toFixed(1)})` : '🌙 Night'}
+              <div style={{ fontSize: '0.65rem', color: '#8b95a5', marginTop: '0.25rem' }}>
+                {isDaytime ? `☀️ ${(sunrise || 6).toFixed(1)}-${(sunset || 18).toFixed(1)}` : '🌙'}
               </div>
             </div>
           </div>
