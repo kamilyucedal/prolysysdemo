@@ -568,6 +568,74 @@ const CSPPyrolysisSimulation = () => {
             </div>
           </div>
         </div>
+        
+        {/* START/STOP Controls - Moved to top for better mobile UX */}
+        <div style={{
+          marginTop: '1.5rem',
+          display: 'flex',
+          justifyContent: 'center',
+          gap: '1rem',
+          flexWrap: 'wrap'
+        }}>
+          <button
+            onClick={() => setIsRunning(!isRunning)}
+            style={{
+              background: isRunning ? 'rgba(239,68,68,0.2)' : 'rgba(16,185,129,0.2)',
+              border: `2px solid ${isRunning ? 'rgba(239,68,68,0.5)' : 'rgba(16,185,129,0.5)'}`,
+              color: isRunning ? '#ef4444' : '#10b981',
+              padding: '0.75rem 2rem',
+              borderRadius: '8px',
+              fontSize: 'clamp(0.9rem, 2.5vw, 1rem)',
+              fontWeight: 600,
+              cursor: 'pointer',
+              transition: 'all 0.3s',
+              minWidth: '120px'
+            }}
+          >
+            {isRunning ? '⏸ STOP' : '▶ START'}
+          </button>
+          
+          <button
+            onClick={() => {
+              setTime(0);
+              setCurrentHour(6);
+              setCurrentMinute(0);
+              setReactorTemp(290);
+              setSaltHotTemp(420);
+              setSaltColdTemp(290);
+              setCloudCover(0);
+              setWindSpeed(0);
+              setProduction({
+                hydrogen: 0,
+                carbon: 0,
+                wax: 0,
+                waste: 0,
+                totalPlasticProcessed: 0
+              });
+              setDailyStats({
+                energyCollected: 0,
+                plasticProcessed: 0,
+                hydrogenProduced: 0,
+                carbonProduced: 0,
+                heatLoss: 0
+              });
+            }}
+            style={{
+              background: 'rgba(59,130,246,0.2)',
+              border: '2px solid rgba(59,130,246,0.5)',
+              color: '#3b82f6',
+              padding: '0.75rem 2rem',
+              borderRadius: '8px',
+              fontSize: 'clamp(0.9rem, 2.5vw, 1rem)',
+              fontWeight: 600,
+              cursor: 'pointer',
+              transition: 'all 0.3s',
+              minWidth: '120px'
+            }}
+          >
+            ↻ RESET
+          </button>
+        </div>
       </div>
       
       {/* Top metrics */}
@@ -1034,73 +1102,6 @@ const CSPPyrolysisSimulation = () => {
             color="#ef4444"
           />
         </div>
-      </div>
-      
-      {/* Controls */}
-      <div style={{
-        marginTop: '1.5rem',
-        display: 'flex',
-        justifyContent: 'center',
-        gap: '1rem',
-        position: 'relative',
-        zIndex: 1
-      }}>
-        <button
-          onClick={() => setIsRunning(!isRunning)}
-          style={{
-            background: isRunning ? 'rgba(239,68,68,0.2)' : 'rgba(16,185,129,0.2)',
-            border: `2px solid ${isRunning ? 'rgba(239,68,68,0.5)' : 'rgba(16,185,129,0.5)'}`,
-            color: isRunning ? '#ef4444' : '#10b981',
-            padding: '0.75rem 2rem',
-            borderRadius: '8px',
-            fontSize: '1rem',
-            fontWeight: 600,
-            cursor: 'pointer',
-            transition: 'all 0.3s'
-          }}
-        >
-          {isRunning ? 'STOP' : 'START'}
-        </button>
-        
-        <button
-          onClick={() => {
-            setTime(0);
-            setCurrentHour(6);
-            setCurrentMinute(0);
-            setReactorTemp(290);
-            setSaltHotTemp(420);
-            setSaltColdTemp(290);
-            setCloudCover(0);
-            setWindSpeed(0);
-            setProduction({
-              hydrogen: 0,
-              carbon: 0,
-              wax: 0,
-              waste: 0,
-              totalPlasticProcessed: 0
-            });
-            setDailyStats({
-              energyCollected: 0,
-              plasticProcessed: 0,
-              hydrogenProduced: 0,
-              carbonProduced: 0,
-              heatLoss: 0
-            });
-          }}
-          style={{
-            background: 'rgba(59,130,246,0.2)',
-            border: '2px solid rgba(59,130,246,0.5)',
-            color: '#3b82f6',
-            padding: '0.75rem 2rem',
-            borderRadius: '8px',
-            fontSize: '1rem',
-            fontWeight: 600,
-            cursor: 'pointer',
-            transition: 'all 0.3s'
-          }}
-        >
-          RESET
-        </button>
       </div>
       
       <style>{`
